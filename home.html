@@ -3,32 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Big Brother Moving offers professional, reliable moving services in Cary, Raleigh and surrounding areas. Family-owned, fully insured movers for residential and commercial relocations.">
+    <meta name="keywords" content="moving company, movers, cary moving, raleigh moving, professional movers, residential moving, commercial moving, local movers">
+    <meta name="author" content="Big Brother Moving">
     <title>Big Brother Moving - Professional Movers in Cary & Raleigh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        /* Global Styles */
+        /* Color Variables */
         :root {
             --primary: #1d3557;
+            --primary-light: #2a4a76;
+            --primary-dark: #142741;
             --secondary: #ffd100;
+            --secondary-light: #ffda33;
+            --secondary-dark: #e6bc00;
             --accent: #e63946;
+            --accent-light: #ea5d68;
+            --accent-dark: #c1242f;
             --light: #f8f9fa;
             --dark: #212529;
             --gray: #6c757d;
+            --success: #28a745;
+            --info: #17a2b8;
+            --warning: #ffc107;
+            --danger: #dc3545;
         }
         
+        /* Global Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         
         body {
             background-color: var(--light);
             color: var(--dark);
             line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
-        h1, h2, h3, h4 {
+        body.dark-mode {
+            background-color: #121212;
+            color: #f8f9fa;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 1rem;
@@ -38,11 +64,26 @@
             margin-bottom: 1.5rem;
         }
         
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+        
+        .text-center {
+            text-align: center;
         }
         
         .btn {
@@ -59,11 +100,30 @@
             border: none;
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover:before {
+            left: 0;
         }
         
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         
         .btn-accent {
@@ -71,8 +131,70 @@
             color: white;
         }
         
-        section {
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+        
+        .btn-large {
+            padding: 14px 28px;
+            font-size: 1.1rem;
+        }
+        
+        .section {
             padding: 80px 0;
+            position: relative;
+        }
+        
+        .section-sm {
+            padding: 40px 0;
+        }
+        
+        .section-lg {
+            padding: 120px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
         }
         
         /* Header */
@@ -81,7 +203,12 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
         
         .top-bar {
@@ -100,11 +227,36 @@
         .contact-info {
             display: flex;
             gap: 20px;
+            align-items: center;
         }
         
-        .contact-info a {
+        .contact-info a, .contact-info span {
             color: white;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .contact-info i {
+            font-size: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1rem;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            opacity: 1;
+            transform: translateY(-2px);
         }
         
         .nav-container {
@@ -143,6 +295,7 @@
             font-weight: 500;
             transition: color 0.3s ease;
             position: relative;
+            padding: 5px 0;
         }
         
         nav ul li a:hover {
@@ -168,32 +321,75 @@
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu:hover {
+            color: var(--secondary);
+        }
+        
+        .floating-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 99;
+            display: none;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
         }
         
         /* Hero Section */
         .hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/600');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/api/placeholder/1200/600');
             background-size: cover;
             background-position: center;
             color: white;
             text-align: center;
-            padding: 150px 0;
+            padding: 180px 0;
             position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(29, 53, 87, 0.8) 0%, rgba(29, 53, 87, 0.4) 100%);
+            z-index: 1;
         }
         
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
         
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 2rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
         
         .hero-cta {
@@ -207,22 +403,6 @@
             background-color: white;
         }
         
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-        }
-        
-        .section-title p {
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -233,34 +413,171 @@
             background-color: white;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.07);
+            transition: all 0.4s ease;
+            border-bottom: 3px solid transparent;
         }
         
         .service-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
+            border-bottom: 3px solid var(--secondary);
         }
         
         .service-card img {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
+            transition: all 0.5s ease;
+        }
+        
+        .service-card:hover img {
+            transform: scale(1.05);
         }
         
         .service-content {
-            padding: 20px;
+            padding: 25px;
         }
         
         .service-content h3 {
             color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
         }
         
-        /* Why Us Section */
+        .service-content p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+        
+        /* Moving Cost Calculator */
+        .calculator {
+            background-color: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .calculator:before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(255, 209, 0, 0.1);
+            border-radius: 50%;
+            top: -150px;
+            left: -150px;
+        }
+        
+        .calculator:after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(29, 53, 87, 0.1);
+            border-radius: 50%;
+            bottom: -100px;
+            right: -100px;
+        }
+        
+        .calculator-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .calculator-container h3 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+        
+        .calculator-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 5px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e1e1e1;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(255, 209, 0, 0.2);
+            outline: none;
+        }
+        
+        .form-group.full-width {
+            grid-column: span 2;
+            text-align: center;
+        }
+        
+        .calculator-result {
+            margin-top: 30px;
+            padding: 25px;
+            border-top: 1px solid #eee;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .result-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 15px 0;
+        }
+        
+        /* Why Choose Us */
         .why-us {
             background-color: var(--primary);
             color: white;
             position: relative;
             overflow: hidden;
+        }
+        
+        .why-us:before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            top: -200px;
+            right: -200px;
+            border-radius: 50%;
         }
         
         .why-us-grid {
@@ -271,40 +588,98 @@
         
         .feature-card {
             text-align: center;
-            padding: 30px 20px;
+            padding: 40px 25px;
             background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            transition: transform 0.3s ease;
+            border-radius: 10px;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+        
+        .feature-card:hover:before {
+            height: 100%;
         }
         
         .feature-card:hover {
-            transform: translateY(-5px);
-            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
         
         .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            font-size: 3rem;
+            margin-bottom: 20px;
             color: var(--secondary);
+            transition: all 0.4s ease;
         }
         
-        /* Testimonials */
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2);
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        /* Testimonials Slider */
         .testimonials {
             background-color: white;
+            position: relative;
+            overflow: hidden;
         }
         
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        .testimonial-slider-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        
+        .testimonial-slider {
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            height: 350px;
+        }
+        
+        .testimonial-slide {
+            min-width: 100%;
+            transition: transform 0.5s ease;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
         }
         
         .testimonial-card {
             background-color: var(--light);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             position: relative;
+            width: 100%;
+            max-width: 700px;
+            transition: all 0.4s ease;
+            transform: scale(0.95);
+            opacity: 0.8;
+        }
+        
+        .testimonial-slide.active .testimonial-card {
+            transform: scale(1);
+            opacity: 1;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
         
         .testimonial-card::before {
@@ -312,15 +687,20 @@
             position: absolute;
             top: -20px;
             left: 20px;
-            font-size: 5rem;
+            font-size: 6rem;
             color: var(--secondary);
             opacity: 0.2;
             font-family: Georgia, serif;
         }
         
         .testimonial-content {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-style: italic;
+            color: var(--gray);
+            position: relative;
+            z-index: 1;
+            font-size: 1.05rem;
+            line-height: 1.7;
         }
         
         .testimonial-author {
@@ -329,61 +709,229 @@
         }
         
         .author-image {
-            width: 50px;
-            height: 50px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             margin-right: 15px;
             object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         
         .author-info h4 {
-            margin-bottom: 0;
+            margin-bottom: 3px;
+            color: var(--primary);
+            font-size: 1.1rem;
         }
         
         .author-info p {
             color: var(--gray);
-            margin-bottom: 0;
+            margin-bottom: 5px;
             font-size: 0.9rem;
+        }
+        
+        .testimonial-rating {
+            margin-top: 5px;
+            color: var(--warning);
+            font-size: 1rem;
+        }
+        
+        .testimonial-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .testimonial-control {
+            background-color: transparent;
+            border: none;
+            color: var(--primary);
+            font-size: 1.8rem;
+            cursor: pointer;
+            margin: 0 15px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-control:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        .testimonial-control:focus {
+            outline: none;
+        }
+        
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-dot.active {
+            background-color: var(--primary);
+            transform: scale(1.2);
         }
         
         /* CTA Section */
         .cta {
             background-color: var(--secondary);
             text-align: center;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta:before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 100px;
+            background-color: white;
+            top: -50px;
+            left: -25%;
+            border-radius: 50%;
+        }
+        
+        .cta:after {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 100px;
+            background-color: white;
+            bottom: -50px;
+            left: -25%;
+            border-radius: 50%;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
         }
         
         .cta h2 {
             color: var(--primary);
             margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+        
+        .cta p {
+            color: var(--dark);
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.2rem;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            background-color: var(--light);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background-color: white;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background-color: white;
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: var(--light);
+        }
+        
+        .faq-question i {
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-answer.show {
+            padding: 0 20px 20px;
+            max-height: 1000px;
         }
         
         /* Footer */
         footer {
             background-color: var(--dark);
             color: white;
-            padding: 60px 0 20px;
+            padding: 80px 0 20px;
+            position: relative;
+        }
+        
+        footer:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            background-color: var(--dark);
+            top: -25px;
+            left: 0;
+            transform: skewY(-1deg);
         }
         
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
         
         .footer-logo {
             color: white;
             font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: block;
         }
         
         .footer-column h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
+            color: white;
         }
         
         .footer-column h3::after {
@@ -392,8 +940,13 @@
             bottom: 0;
             left: 0;
             width: 40px;
-            height: 2px;
+            height: 3px;
             background-color: var(--secondary);
+        }
+        
+        .footer-column p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
         }
         
         .footer-column ul {
@@ -401,17 +954,25 @@
         }
         
         .footer-column ul li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
         .footer-column ul li a {
             color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .footer-column ul li a i {
+            font-size: 0.8rem;
         }
         
         .footer-column ul li a:hover {
             color: var(--secondary);
+            transform: translateX(5px);
         }
         
         .contact-item {
@@ -421,90 +982,729 @@
         }
         
         .contact-icon {
-            margin-right: 10px;
+            margin-right: 15px;
             color: var(--secondary);
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            background-color: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-5px);
         }
         
         .copyright {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.5);
             font-size: 0.9rem;
         }
         
-        /* Calculator Section */
-        .calculator {
+        .copyright p {
+            margin-bottom: 5px;
+        }
+        
+        .go-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+        
+        .go-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .go-top:hover {
+            background-color: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .animate {
+            opacity: 0;
+        }
+        
+        .animate.fadeInUp {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .animate.fadeInRight {
+            animation: fadeInRight 0.6s ease forwards;
+        }
+        
+        .animate.fadeInLeft {
+            animation: fadeInLeft 0.6s ease forwards;
+        }
+        
+        /* Moving Tips Styles */
+        .moving-tips {
             background-color: var(--light);
+            position: relative;
         }
         
-        .calculator-container {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            max-width: 800px;
+        .tips-container {
+            max-width: 900px;
             margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
         }
         
-        .calculator-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+        .tips-categories {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            background-color: var(--primary);
         }
         
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
+        .tip-category {
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            color: white;
             font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            opacity: 0.7;
         }
         
-        .form-group input,
-        .form-group select {
+        .tip-category:hover {
+            opacity: 1;
+        }
+        
+        .tip-category.active {
+            opacity: 1;
+        }
+        
+        .tip-category.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
+            height: 3px;
+            background-color: var(--secondary);
         }
         
-        .form-group.full-width {
-            grid-column: span 2;
+        .tips-content {
+            padding: 30px;
+            min-height: 400px;
         }
         
-        .calculator-result {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-            text-align: center;
+        .tip-content {
+            display: none;
         }
         
-        .result-amount {
-            font-size: 2.5rem;
-            font-weight: 700;
+        .tip-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tip-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .tip-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .tip-icon {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 20px;
+        }
+        
+        .tip-text h3 {
             color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .tip-text p {
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+        
+        /* Moving Timeline Styles */
+        .moving-timeline {
+            background-color: white;
+            position: relative;
+        }
+        
+        .timeline-wrapper {
+            max-width: 900px;
+            margin: 50px auto 0;
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .timeline-track {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background-color: var(--secondary);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+        
+        .timeline-items {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 30px;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            position: relative;
+        }
+        
+        .timeline-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 30px;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            width: 30px;
+            height: 30px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            box-shadow: 0 0 0 4px white;
+        }
+        
+        .timeline-content {
+            width: calc(50% - 50px);
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            transform: rotate(45deg);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: auto;
+            left: -10px;
+        }
+        
+        .timeline-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 15px;
+        }
+        
+        .timeline-content h3 {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content p {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+        
+        /* Chat Widget Styles */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        
+        .chat-button {
+            display: flex;
+            align-items: center;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50px;
+            padding: 10px 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .chat-button i {
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+        
+        .chat-popup {
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            width: 320px;
+            height: 400px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.9);
+        }
+        
+        .chat-popup.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        
+        .chat-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-title {
+            display: flex;
+            align-items: center;
+        }
+        
+        .agent-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid white;
+        }
+        
+        .chat-title h3 {
+            font-size: 1rem;
+            margin: 0;
+        }
+        
+        .chat-status {
+            font-size: 0.8rem;
+            color: #4caf50;
+        }
+        
+        .chat-close {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+        
+        .chat-message {
+            margin-bottom: 15px;
+            display: flex;
+        }
+        
+        .chat-message.outgoing {
+            justify-content: flex-end;
+        }
+        
+        .message-content {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .chat-message.incoming .message-content {
+            background-color: #f1f1f1;
+        }
+        
+        .chat-message.outgoing .message-content {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .message-content p {
+            margin: 0;
+        }
+        
+        .message-time {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            display: block;
+            text-align: right;
+            margin-top: 5px;
+        }
+        
+        .chat-input {
+            padding: 10px;
+            display: flex;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .chat-input button {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .chat-input button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* Theme Toggle Styles */
+        .theme-toggle {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background-color: var(--dark);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 99;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+        }
+        
+        /* Notification Styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            z-index: 9999;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .notification i {
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+        
+        .notification-success {
+            border-left: 4px solid #4caf50;
+        }
+        
+        .notification-success i {
+            color: #4caf50;
+        }
+        
+        .notification-error {
+            border-left: 4px solid #f44336;
+        }
+        
+        .notification-error i {
+            color: #f44336;
+        }
+        
+        .notification-warning {
+            border-left: 4px solid #ff9800;
+        }
+        
+        .notification-warning i {
+            color: #ff9800;
+        }
+        
+        .notification-info {
+            border-left: 4px solid #2196f3;
+        }
+        
+        .notification-info i {
+            color: #2196f3;
+        }
+        
+        .notification-close {
+            background: none;
+            border: none;
+            color: var(--gray);
+            margin-left: 15px;
+            cursor: pointer;
+        }
+        
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #121212;
+            color: #f8f9fa;
+        }
+        
+        body.dark-mode header {
+            background-color: #1f1f1f;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        body.dark-mode nav ul li a {
+            color: #f8f9fa;
+        }
+        
+        body.dark-mode .services,
+        body.dark-mode .testimonials,
+        body.dark-mode .faq {
+            background-color: #1f1f1f;
+        }
+        
+        body.dark-mode .section-title h2 {
+            color: #f8f9fa;
+        }
+        
+        body.dark-mode .service-card,
+        body.dark-mode .calculator-container,
+        body.dark-mode .testimonial-card,
+        body.dark-mode .faq-item,
+        body.dark-mode .tips-content,
+        body.dark-mode .timeline-content {
+            background-color: #2d2d2d;
+            color: #f8f9fa;
+        }
+        
+        body.dark-mode .service-content h3,
+        body.dark-mode .calculator-container h3,
+        body.dark-mode .faq-question,
+        body.dark-mode .testimonial-author h4,
+        body.dark-mode .tip-text h3,
+        body.dark-mode .timeline-content h3 {
+            color: #f8f9fa;
+        }
+        
+        body.dark-mode .service-content p,
+        body.dark-mode .testimonial-content,
+        body.dark-mode .tip-text p,
+        body.dark-mode .timeline-content p {
+            color: #adb5bd;
+        }
+        
+        body.dark-mode .form-group input,
+        body.dark-mode .form-group select,
+        body.dark-mode .chat-input input {
+            background-color: #3a3a3a;
+            border-color: #444;
+            color: #f8f9fa;
+        }
+        
+        body.dark-mode .theme-toggle {
+            background-color: #f8f9fa;
+            color: #121212;
+        }
+        
+        body.dark-mode .notification {
+            background-color: #2d2d2d;
+            color: #f8f9fa;
+        }
+        
+        body.dark-mode .chat-popup {
+            background-color: #2d2d2d;
+        }
+        
+        body.dark-mode .chat-message.incoming .message-content {
+            background-color: #3a3a3a;
+            color: #f8f9fa;
+        }
+        
+        body.dark-mode .chat-input {
+            border-top-color: #444;
+        }
+        
+        body.dark-mode .testimonial-marker,
+        body.dark-mode .timeline-marker {
+            box-shadow: 0 0 0 4px #1f1f1f;
         }
         
         /* Mobile Responsiveness */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .timeline-content {
+                padding: 20px;
+            }
+        }
+        
         @media (max-width: 768px) {
             .container {
                 padding: 0 15px;
             }
             
-            section {
+            .section {
                 padding: 60px 0;
             }
             
             .hero {
-                padding: 100px 0;
+                padding: 120px 0;
             }
             
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
             
             .hero p {
@@ -524,6 +1724,24 @@
             
             nav ul {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+            
+            body.dark-mode nav ul {
+                background-color: #1f1f1f;
+            }
+            
+            nav ul.show {
+                display: flex;
             }
             
             .mobile-menu {
@@ -537,84 +1755,250 @@
             .form-group.full-width {
                 grid-column: span 1;
             }
+            
+            .testimonial-card::before {
+                font-size: 4rem;
+            }
+            
+            .tips-categories {
+                overflow-x: auto;
+                white-space: nowrap;
+                justify-content: flex-start;
+            }
+            
+            .tip-category {
+                padding: 15px;
+            }
+            
+            .tips-content {
+                padding: 20px;
+            }
+            
+            .timeline-track {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                justify-content: flex-start;
+                padding-left: 60px;
+                padding-right: 0;
+            }
+            
+            .timeline-item:nth-child(even) {
+                padding-left: 60px;
+            }
+            
+            .timeline-marker {
+                left: 30px;
+            }
+            
+            .timeline-content {
+                width: 100%;
+            }
+            
+            .timeline-content::before {
+                left: -10px;
+                right: auto;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -10px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .theme-toggle {
+                top: auto;
+                bottom: 80px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+            
+            .calculator-container {
+                padding: 20px;
+            }
+            
+            .top-bar .container {
+                justify-content: center;
+            }
+            
+            .social-links {
+                margin-top: 10px;
+            }
+            
+            .chat-popup {
+                width: 280px;
+                height: 350px;
+                right: 0;
+                left: auto;
+            }
+            
+            .chat-button .chat-label {
+                display: none;
+            }
+            
+            .chat-button {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                padding: 0;
+                justify-content: center;
+            }
+            
+            .chat-button i {
+                margin: 0;
+            }
+            
+            .testimonial-controls {
+                flex-wrap: wrap;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Floating CTA Button -->
+    <a href="#quote" class="btn btn-accent floating-cta">
+        <i class="fas fa-calculator"></i> Get A Quote
+    </a>
+    
+    <!-- Live Chat Button -->
+    <div class="chat-widget" id="chat-widget">
+        <div class="chat-button" id="chat-button">
+            <i class="fas fa-comments"></i>
+            <span class="chat-label">Chat with us</span>
+        </div>
+        <div class="chat-popup" id="chat-popup">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <img src="/api/placeholder/30/30" alt="Support Agent" class="agent-avatar">
+                    <div>
+                        <h3>Live Chat Support</h3>
+                        <span class="chat-status">Online</span>
+                    </div>
+                </div>
+                <button class="chat-close" id="chat-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chat-messages">
+                <div class="chat-message incoming">
+                    <div class="message-content">
+                        <p>👋 Hi there! Welcome to Big Brother Moving. How can we help you with your move today?</p>
+                        <span class="message-time">Just now</span>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chat-input-field" placeholder="Type your message...">
+                <button id="chat-send">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
     <!-- Top Bar -->
     <div class="top-bar">
         <div class="container">
             <div class="contact-info">
-                <span>📍 Cary, NC 27518</span>
-                <a href="tel:919-525-9425">📞 919-525-9425</a>
+                <span><i class="fas fa-map-marker-alt"></i> Cary, NC 27518</span>
+                <a href="tel:919-625-9425"><i class="fas fa-phone-alt"></i> 919-625-9425</a>
+                <a href="mailto:bigbrothermoving109@gmail.com"><i class="fas fa-envelope"></i> bigbrothermoving109@gmail.com</a>
             </div>
             <div class="social-links">
-                <span>Follow us: FB | IG | TW</span>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </div>
 
     <!-- Header -->
-    <header>
+    <header id="header">
         <div class="container">
             <div class="nav-container">
                 <a href="#" class="logo">
                     <img src="/api/placeholder/120/60" alt="Big Brother Moving Logo">
-                    <span>Big Brother Moving</span>
+                   
                 </a>
                 <nav>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Reviews</a></li>
-                        <li><a href="#">Contact</a></li>
+                    <ul id="menu">
+                        <li><a href="home.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="residential.html">Residential Moving</a></li>
+                        <li><a href="commercial.html">Commercial Moving</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
-                    <div class="mobile-menu">☰</div>
+                    <div class="mobile-menu" id="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </div>
                 </nav>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="container">
-            <div class="hero-content">
+            <div class="hero-content animate fadeInUp">
                 <h1>Moving Doesn't Need To Be Complicated</h1>
                 <p>We'll guide you every step of the way with professional and reliable moving services in Cary & Raleigh area.</p>
                 <div class="hero-cta">
-                    <a href="#" class="btn">Get Free Estimate</a>
-                    <a href="#" class="btn btn-accent">Call Now</a>
+                    <a href="#quote" class="btn btn-large">Get Free Estimate</a>
+                    <a href="tel:919-625-9425" class="btn btn-accent btn-large"><i class="fas fa-phone-alt"></i> Call Now</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section class="services">
+    <section class="section services" id="services">
         <div class="container">
             <div class="section-title">
                 <h2>Our Moving Services</h2>
                 <p>We specialize in moving people, not just boxes. Let us handle your next move with care and professionalism.</p>
             </div>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card animate fadeInUp" style="animation-delay: 0.1s;">
                     <img src="/api/placeholder/400/200" alt="Residential Moving">
                     <div class="service-content">
                         <h3>Residential Moving</h3>
                         <p>From apartments to houses, we'll make your residential move smooth and stress-free with our experienced team.</p>
-                        <a href="#" class="btn">Learn More</a>
+                        <a href="residential.html" class="btn">Learn More</a>
                     </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card animate fadeInUp" style="animation-delay: 0.3s;">
                     <img src="/api/placeholder/400/200" alt="Commercial Moving">
                     <div class="service-content">
                         <h3>Commercial Moving</h3>
                         <p>Minimize downtime with our efficient commercial moving services for offices, retail spaces, and more.</p>
-                        <a href="#" class="btn">Learn More</a>
+                        <a href="commercial.html" class="btn">Learn More</a>
                     </div>
                 </div>
-                <div class="service-card">
+                <div class="service-card animate fadeInUp" style="animation-delay: 0.5s;">
                     <img src="/api/placeholder/400/200" alt="Packing Services">
                     <div class="service-content">
                         <h3>Packing Services</h3>
@@ -627,17 +2011,19 @@
     </section>
 
     <!-- Moving Cost Calculator -->
-    <section class="calculator">
+    <section class="section calculator" id="quote">
         <div class="container">
             <div class="section-title">
                 <h2>Get An Estimate</h2>
                 <p>Use our quick calculator to get an estimated cost for your move. For a detailed quote, contact us directly.</p>
             </div>
-            <div class="calculator-container">
-                <form class="calculator-form">
+            <div class="calculator-container animate fadeInUp">
+                <h3>Moving Cost Calculator</h3>
+                <form class="calculator-form" id="estimate-form">
                     <div class="form-group">
                         <label for="move-size">Home Size</label>
-                        <select id="move-size">
+                        <select id="move-size" required>
+                            <option value="">Select home size</option>
                             <option value="studio">Studio Apartment</option>
                             <option value="1bedroom">1 Bedroom</option>
                             <option value="2bedroom">2 Bedrooms</option>
@@ -647,7 +2033,8 @@
                     </div>
                     <div class="form-group">
                         <label for="move-distance">Move Distance</label>
-                        <select id="move-distance">
+                        <select id="move-distance" required>
+                            <option value="">Select distance</option>
                             <option value="local">Local (Within 50 miles)</option>
                             <option value="intrastate">Intrastate</option>
                             <option value="interstate">Interstate</option>
@@ -655,55 +2042,64 @@
                     </div>
                     <div class="form-group">
                         <label for="move-date">Move Date</label>
-                        <input type="date" id="move-date">
+                        <input type="date" id="move-date" required>
                     </div>
                     <div class="form-group">
                         <label for="packing-service">Packing Services</label>
-                        <select id="packing-service">
+                        <select id="packing-service" required>
+                            <option value="">Select packing option</option>
                             <option value="none">No Packing Needed</option>
                             <option value="partial">Partial Packing</option>
                             <option value="full">Full Packing</option>
                         </select>
                     </div>
                     <div class="form-group full-width">
-                        <button type="button" class="btn">Calculate Estimate</button>
+                        <button type="button" class="btn btn-primary" id="calculate-btn">Calculate Estimate</button>
                     </div>
                 </form>
-                <div class="calculator-result">
+                <div class="calculator-result" id="estimate-result" style="display: none;">
                     <p>Estimated Moving Cost:</p>
-                    <div class="result-amount">$800 - $1,200</div>
+                    <div class="result-amount" id="result-amount">$800 - $1,200</div>
                     <p><small>This is a rough estimate. Contact us for an accurate quote.</small></p>
-                    <a href="#" class="btn btn-accent">Get Exact Quote</a>
+                    <a href="contact.html" class="btn btn-accent">Get Exact Quote</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Why Choose Us -->
-    <section class="why-us">
+    <section class="section why-us" id="why-us">
         <div class="container">
             <div class="section-title">
                 <h2>Why Choose Big Brother Moving</h2>
                 <p>We pride ourselves in being the most professional movers around.</p>
             </div>
             <div class="why-us-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">⏱️</div>
+                <div class="feature-card animate fadeInUp" style="animation-delay: 0.1s;">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
                     <h3>Punctual & Efficient</h3>
                     <p>We value your time and always arrive on schedule, completing moves efficiently without sacrificing quality.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🛡️</div>
+                <div class="feature-card animate fadeInUp" style="animation-delay: 0.3s;">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
                     <h3>Licensed & Insured</h3>
                     <p>Rest easy knowing your belongings are protected by our comprehensive insurance coverage.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                <div class="feature-card animate fadeInUp" style="animation-delay: 0.5s;">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
                     <h3>Professional Team</h3>
                     <p>Our experienced, background-checked movers are trained to handle your items with the utmost care.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💰</div>
+                <div class="feature-card animate fadeInUp" style="animation-delay: 0.7s;">
+                    <div class="feature-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
                     <h3>Transparent Pricing</h3>
                     <p>No hidden fees or surprise charges. Get clear, upfront pricing before your move begins.</p>
                 </div>
@@ -711,47 +2107,404 @@
         </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials">
+    <!-- Testimonials Slider -->
+    <section class="section testimonials" id="testimonials">
         <div class="container">
             <div class="section-title">
                 <h2>What Our Customers Are Saying</h2>
                 <p>Don't just take our word for it - hear from our satisfied customers.</p>
             </div>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>We had a move in June and had a great experience with Big Brother Moving. They came equipped to get it done quick with a large crew and they definitely were the best priced movers around for the quality of service you get. Great guys! Great service!</p>
+            <div class="testimonial-slider-container">
+                <div class="testimonial-slider" id="testimonial-slider">
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>We had a move in June and had a great experience with Big Brother Moving. They came equipped to get it done quick with a large crew and they definitely were the best priced movers around for the quality of service you get. Great guys! Great service!</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="/api/placeholder/50/50" alt="Leilani Colonna Warren" class="author-image">
+                                <div class="author-info">
+                                    <h4>Leilani Colonna Warren</h4>
+                                    <p>Cary, NC</p>
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="testimonial-author">
-                        <img src="/api/placeholder/50/50" alt="Leilani Colonna Warren" class="author-image">
-                        <div class="author-info">
-                            <h4>Leilani Colonna Warren</h4>
-                            <p>Cary, NC</p>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>Mike and his team showed up on time and had my entire second floor apartment loaded into the moving truck quickly. When I arrived at my new house in Cary, nothing was damaged. Hiring Mike was a great move. I'm a happy camper!</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="/api/placeholder/50/50" alt="Mitch White" class="author-image">
+                                <div class="author-info">
+                                    <h4>Mitch White</h4>
+                                    <p>Raleigh, NC</p>
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>I have used Big Brother Moving both personally and professionally numerous times over the past few years. Every time the moves went smoothly and very professionally. Their team goes above and beyond to ensure their clients are happy. HIGHLY recommend!</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="/api/placeholder/50/50" alt="Kellan Duffy" class="author-image">
+                                <div class="author-info">
+                                    <h4>Kellan Duffy</h4>
+                                    <p>Cary, NC</p>
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>Big Brother Moving are professional, on time and treated my furniture as if their own. Their team was careful with all my belongings and made sure everything was placed exactly where I wanted. Can't wait to use them in the future!</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="/api/placeholder/50/50" alt="James Bailey" class="author-image">
+                                <div class="author-info">
+                                    <h4>James Bailey</h4>
+                                    <p>Cary, NC</p>
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>I can not thank them enough. I fired some other movers and Mike's guys came in and saved us at the last minute. They were professional, efficient, and really cared about making sure our move went smoothly.</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="/api/placeholder/50/50" alt="Robert Kimmel" class="author-image">
+                                <div class="author-info">
+                                    <h4>Robert Kimmel</h4>
+                                    <p>Apex, NC</p>
+                                    <div class="testimonial-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>Mike and his team showed up on time and had my entire second floor apartment loaded into the moving truck quickly. When I arrived at my new house in Cary, nothing was damaged. Hiring Mike was a great move. I'm a happy camper!</p>
+                <div class="testimonial-controls">
+                    <button class="testimonial-control" id="testimonial-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="testimonial-dots" id="testimonial-dots">
+                        <span class="testimonial-dot active" data-index="0"></span>
+                        <span class="testimonial-dot" data-index="1"></span>
+                        <span class="testimonial-dot" data-index="2"></span>
+                        <span class="testimonial-dot" data-index="3"></span>
+                        <span class="testimonial-dot" data-index="4"></span>
                     </div>
-                    <div class="testimonial-author">
-                        <img src="/api/placeholder/50/50" alt="Mitch White" class="author-image">
-                        <div class="author-info">
-                            <h4>Mitch White</h4>
-                            <p>Raleigh, NC</p>
+                    <button class="testimonial-control" id="testimonial-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="reviews.html" class="btn btn-outline">Read More Reviews</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq" id="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to our most commonly asked questions about moving services.</p>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" data-toggle="faq">
+                        <span>How far in advance should I book my move?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We recommend booking your move at least 2-4 weeks in advance, especially during peak moving season (May-September). For moves during these busier months, booking 4-6 weeks ahead is ideal to secure your preferred date.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-toggle="faq">
+                        <span>Are you licensed and insured?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, Big Brother Moving is fully licensed and insured. Our comprehensive insurance coverage protects your belongings during the entire moving process, giving you peace of mind throughout your relocation.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-toggle="faq">
+                        <span>Do you provide packing supplies?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer a complete range of packing supplies including boxes, bubble wrap, packing paper, tape, and specialty containers for delicate items. We can provide these materials as part of our full-service packing or make them available for purchase if you prefer to pack yourself.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-toggle="faq">
+                        <span>How do you handle fragile or valuable items?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our professional movers are trained in proper techniques for handling fragile and valuable items. We use specialized packing materials and methods to ensure maximum protection. For particularly valuable items, we recommend discussing them specifically during your estimate so we can take extra precautions.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" data-toggle="faq">
+                        <span>What payment methods do you accept?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept cash, credit cards (Visa, MasterCard, American Express, Discover), debit cards, and certified checks. A deposit may be required to secure your moving date, with the balance due upon completion of your move.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Moving Tips Section -->
+    <section class="section moving-tips" id="moving-tips">
+        <div class="container">
+            <div class="section-title">
+                <h2>Expert Moving Tips</h2>
+                <p>Make your move easier with these professional tips from our experienced team.</p>
+            </div>
+            <div class="tips-container">
+                <div class="tips-categories">
+                    <button class="tip-category active" data-category="planning">Planning</button>
+                    <button class="tip-category" data-category="packing">Packing</button>
+                    <button class="tip-category" data-category="moving-day">Moving Day</button>
+                    <button class="tip-category" data-category="settling">Settling In</button>
+                </div>
+                <div class="tips-content">
+                    <div class="tip-content active" id="planning">
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="tip-text">
+                                <h3>Create a Moving Timeline</h3>
+                                <p>Start planning 8 weeks before your move. Create a week-by-week checklist to stay organized and ensure nothing is forgotten.</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <div class="tip-text">
+                                <h3>Take Inventory</h3>
+                                <p>Document all your belongings with photos and create a detailed inventory. This helps with insurance and ensures nothing gets lost during the move.</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="tip-text">
+                                <h3>Schedule Utility Transfers</h3>
+                                <p>Contact utility companies at least two weeks in advance to schedule disconnection at your current home and connection at your new residence.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tip-content" id="packing">
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div class="tip-text">
+                                <h3>Pack Room by Room</h3>
+                                <p>Pack one room at a time and clearly label boxes with contents and destination room. Color coding can help for quick identification.</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-suitcase"></i>
+                            </div>
+                            <div class="tip-text">
+                                <h3>Pack an Essentials Box</h3>
+                                <p>Pack a separate box with essentials you'll need immediately upon arrival: toiletries, medications, important documents, and a change of clothes.</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-wine-glass"></i>
+                            </div>
+                            <div class="tip-text">
+                                <h3>Protect Fragile Items</h3>
+                                <p>Wrap fragile items individually in packing paper and use bubble wrap for extra protection. Fill empty spaces in boxes to prevent shifting.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tip-content" id="moving-day">
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="tip-text">
+                                <h3>Prepare Your Home</h3>
+                                <p>Cover floors with protective materials and remove doors if needed to facilitate furniture movement. Clear pathways for movers.</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-child"></i>
+                            </div>
+                            <div class="tip-text">
+                                <h3>Plan for Children and Pets</h3>
+                                <p>Arrange for children and pets to be away from the home during loading and unloading to ensure their safety and reduce stress.</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="tip-text">
+                                <h3>Keep Important Items With You</h3>
+                                <p>Carry valuables, important documents, and irreplaceable items with you rather than loading them onto the moving truck.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tip-content" id="settling">
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-bed"></i>
+                            </div>
+                            <div class="tip-text">
+                                <h3>Set Up Bedrooms First</h3>
+                                <p>Make beds and unpack bedroom essentials first so everyone has a comfortable place to sleep after a long moving day.</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="tip-text">
+                                <h3>Inspect Your New Home</h3>
+                                <p>Check for any issues like water leaks, electrical problems, or HVAC issues upon arrival. Document any existing damage.</p>
+                            </div>
+                        </div>
+                        <div class="tip-item">
+                            <div class="tip-icon">
+                                <i class="fas fa-street-view"></i>
+                            </div>
+                            <div class="tip-text">
+                                <h3>Locate Important Community Features</h3>
+                                <p>Identify nearby emergency services, grocery stores, pharmacies, and other essential locations in your new neighborhood.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p>I have used Big Brother Moving both personally and professionally numerous times over the past few years. Every time the moves goes smoothly and very professionally. Their team goes above and beyond to ensure their clients are happy. HIGHLY recommend!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Moving Timeline -->
+    <section class="section moving-timeline" id="moving-timeline">
+        <div class="container">
+            <div class="section-title">
+                <h2>Your Moving Journey</h2>
+                <p>A simple timeline of what to expect when you choose Big Brother Moving</p>
+            </div>
+            <div class="timeline-wrapper">
+                <div class="timeline-track"></div>
+                <div class="timeline-items">
+                    <div class="timeline-item" data-step="1">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <h3>Initial Contact</h3>
+                            <p>Get in touch with our team to discuss your moving needs and schedule a free consultation.</p>
+                        </div>
                     </div>
-                    <div class="testimonial-author">
-                        <img src="/api/placeholder/50/50" alt="Kellan Duffy" class="author-image">
-                        <div class="author-info">
-                            <h4>Kellan Duffy</h4>
-                            <p>Cary, NC</p>
+                    <div class="timeline-item" data-step="2">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <h3>Detailed Quote</h3>
+                            <p>Receive a comprehensive, no-obligation quote tailored to your specific requirements.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-step="3">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <h3>Scheduling</h3>
+                            <p>Confirm your moving date and finalize all details with our scheduling team.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-step="4">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <h3>Preparation</h3>
+                            <p>Our team provides guidance and packing services to prepare your belongings for the move.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-step="5">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <h3>Moving Day</h3>
+                            <p>Our professional movers arrive on time and handle your move with care and efficiency.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-step="6">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h3>Settling In</h3>
+                            <p>We help with furniture placement and assembly to make your new house feel like home.</p>
                         </div>
                     </div>
                 </div>
@@ -762,9 +2515,14 @@
     <!-- CTA Section -->
     <section class="cta">
         <div class="container">
-            <h2>Ready For A Stress-Free Moving Experience?</h2>
-            <p>Contact Big Brother Moving today and let us handle the heavy lifting.</p>
-            <a href="#" class="btn btn-accent">Get Free Estimate</a>
+            <div class="cta-content animate fadeInUp">
+                <h2>Ready For A Stress-Free Moving Experience?</h2>
+                <p>Contact Big Brother Moving today and let us handle the heavy lifting. Our professional team is standing by to make your move smooth and hassle-free.</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary btn-large"><i class="fas fa-clipboard-check"></i> Get Free Estimate</a>
+                    <a href="tel:919-625-9425" class="btn btn-outline btn-large"><i class="fas fa-phone-alt"></i> Call Now</a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -775,48 +2533,446 @@
                 <div class="footer-column">
                     <a href="#" class="footer-logo">Big Brother Moving</a>
                     <p>The finest moving company in the Cary-Raleigh area. We pride ourselves in being the most professional movers around.</p>
+                    <p><strong>People Call Us Because "WE MOVE"</strong></p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
                 <div class="footer-column">
                     <h3>Services</h3>
                     <ul>
-                        <li><a href="#">Residential Moving</a></li>
-                        <li><a href="#">Commercial Moving</a></li>
-                        <li><a href="#">Packing Services</a></li>
-                        <li><a href="#">Loading & Unloading</a></li>
-                        <li><a href="#">Furniture Assembly</a></li>
+                        <li><a href="residential.html"><i class="fas fa-angle-right"></i> Residential Moving</a></li>
+                        <li><a href="commercial.html"><i class="fas fa-angle-right"></i> Commercial Moving</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Packing Services</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Loading & Unloading</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Furniture Assembly</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#">Get a Quote</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Reviews</a></li>
-                        <li><a href="#">Moving Tips</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#quote"><i class="fas fa-angle-right"></i> Get a Quote</a></li>
+                        <li><a href="about.html"><i class="fas fa-angle-right"></i> About Us</a></li>
+                        <li><a href="reviews.html"><i class="fas fa-angle-right"></i> Reviews</a></li>
+                        <li><a href="#faq"><i class="fas fa-angle-right"></i> FAQ</a></li>
+                        <li><a href="contact.html"><i class="fas fa-angle-right"></i> Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Contact Us</h3>
                     <div class="contact-item">
-                        <span class="contact-icon">📍</span>
-                        <span>P.O. Box 5068, Cary, NC 27518</span>
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <div>
+                            <p><strong>Address:</strong><br>P.O. Box 5608,<br>Cary, NC 27518</p>
+                        </div>
                     </div>
                     <div class="contact-item">
-                        <span class="contact-icon">📞</span>
-                        <span>919-525-9425</span>
+                        <i class="fas fa-phone-alt contact-icon"></i>
+                        <div>
+                            <p><strong>Phone:</strong><br><a href="tel:919-625-9425" style="color:rgba(255, 255, 255, 0.7);">919-625-9425</a></p>
+                        </div>
                     </div>
                     <div class="contact-item">
-                        <span class="contact-icon">📧</span>
-                        <span>bigbrothermoving10@gmail.com</span>
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <div>
+                            <p><strong>Email:</strong><br><a href="mailto:bigbrothermoving109@gmail.com" style="color:rgba(255, 255, 255, 0.7);">bigbrothermoving109@gmail.com</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="copyright">
                 <p>Copyright © 2025, Big Brother Moving, LLC. All Rights Reserved.</p>
+                <p>Cary NC Movers | Cary Moving Company | Residential & Commercial Moving Services</p>
                 <p>Website Design & Development by Claude</p>
             </div>
         </div>
     </footer>
+
+    <!-- Go Top Button -->
+    <div class="go-top" id="go-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('menu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                menu.classList.toggle('show');
+                this.innerHTML = menu.classList.contains('show') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Sticky Header
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                    document.getElementById('go-top').classList.add('active');
+                    document.querySelector('.floating-cta').style.display = 'block';
+                } else {
+                    header.classList.remove('scrolled');
+                    document.getElementById('go-top').classList.remove('active');
+                    document.querySelector('.floating-cta').style.display = 'none';
+                }
+            });
+            
+            // Go Top Button
+            document.getElementById('go-top').addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // FAQ Toggle
+            const faqQuestions = document.querySelectorAll('[data-toggle="faq"]');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // Close all open FAQs
+                    document.querySelectorAll('.faq-question').forEach(q => {
+                        q.classList.remove('active');
+                        q.nextElementSibling.classList.remove('show');
+                    });
+                    
+                    // If the clicked question wasn't active, open it
+                    if (!isActive) {
+                        this.classList.add('active');
+                        answer.classList.add('show');
+                    }
+                });
+            });
+            
+            // Animation on scroll
+            const animateElements = document.querySelectorAll('.animate');
+            
+            function checkIfInView() {
+                animateElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        const delay = element.style.animationDelay || '0s';
+                        setTimeout(() => {
+                            element.style.opacity = '1';
+                        }, parseInt(delay) * 1000);
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', checkIfInView);
+            checkIfInView(); // Check on page load
+            
+            // Testimonial Slider
+            const testimonialSlider = document.getElementById('testimonial-slider');
+            const testimonialSlides = document.querySelectorAll('.testimonial-slide');
+            const testimonialDots = document.querySelectorAll('.testimonial-dot');
+            const prevBtn = document.getElementById('testimonial-prev');
+            const nextBtn = document.getElementById('testimonial-next');
+            let currentSlide = 0;
+            
+            function showSlide(index) {
+                // Ensure index is within bounds
+                if (index < 0) index = testimonialSlides.length - 1;
+                if (index >= testimonialSlides.length) index = 0;
+                
+                // Update current slide index
+                currentSlide = index;
+                
+                // Update slider position
+                testimonialSlider.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // Update active state for slides and dots
+                testimonialSlides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === currentSlide);
+                });
+                
+                testimonialDots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentSlide);
+                });
+            }
+            
+            // Set up event listeners for controls
+            prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+            nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+            
+            // Set up event listeners for dots
+            testimonialDots.forEach((dot, i) => {
+                dot.addEventListener('click', () => showSlide(i));
+            });
+            
+            // Auto-advance slides every 5 seconds
+            let slideInterval = setInterval(() => showSlide(currentSlide + 1), 7000);
+            
+            // Pause auto-advance on hover
+            testimonialSlider.addEventListener('mouseenter', () => clearInterval(slideInterval));
+            testimonialSlider.addEventListener('mouseleave', () => {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(() => showSlide(currentSlide + 1), 7000);
+            });
+            
+            // Initialize the slider
+            showSlide(0);
+            
+            // Moving Tips Tabs
+            const tipCategories = document.querySelectorAll('.tip-category');
+            const tipContents = document.querySelectorAll('.tip-content');
+            
+            tipCategories.forEach(category => {
+                category.addEventListener('click', function() {
+                    const targetCategory = this.getAttribute('data-category');
+                    
+                    // Update active state for categories
+                    tipCategories.forEach(cat => cat.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show the selected content and hide others
+                    tipContents.forEach(content => {
+                        content.classList.toggle('active', content.id === targetCategory);
+                    });
+                });
+            });
+            
+            // Timeline Animation
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            
+            function animateTimeline() {
+                timelineItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('active');
+                    }, index * 300);
+                });
+            }
+            
+            // Trigger timeline animation when it comes into view
+            const timelineSection = document.querySelector('.moving-timeline');
+            if (timelineSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateTimeline();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.3 });
+                
+                observer.observe(timelineSection);
+            }
+            
+            // Moving Cost Calculator with Progress Bar
+            const calculateBtn = document.getElementById('calculate-btn');
+            calculateBtn.addEventListener('click', function() {
+                const moveSize = document.getElementById('move-size').value;
+                const moveDistance = document.getElementById('move-distance').value;
+                const packingService = document.getElementById('packing-service').value;
+                const resultDiv = document.getElementById('estimate-result');
+                const resultAmount = document.getElementById('result-amount');
+                
+                // Validate inputs
+                if (!moveSize || !moveDistance || !packingService) {
+                    showNotification('Please fill in all required fields.', 'error');
+                    return;
+                }
+                
+                // Show loading state
+                calculateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Calculating...';
+                calculateBtn.disabled = true;
+                
+                // Simulate calculation delay for better UX
+                setTimeout(() => {
+                    // Simple calculation logic (this would be more complex in a real application)
+                    let basePrice = 0;
+                    
+                    // Home size pricing
+                    switch(moveSize) {
+                        case 'studio': basePrice = 300; break;
+                        case '1bedroom': basePrice = 500; break;
+                        case '2bedroom': basePrice = 800; break;
+                        case '3bedroom': basePrice = 1100; break;
+                        case '4bedroom': basePrice = 1500; break;
+                    }
+                    
+                    // Distance multiplier
+                    let multiplier = 1;
+                    switch(moveDistance) {
+                        case 'local': multiplier = 1; break;
+                        case 'intrastate': multiplier = 1.5; break;
+                        case 'interstate': multiplier = 2.5; break;
+                    }
+                    
+                    // Packing add-on
+                    let packingCost = 0;
+                    switch(packingService) {
+                        case 'none': packingCost = 0; break;
+                        case 'partial': packingCost = basePrice * 0.2; break;
+                        case 'full': packingCost = basePrice * 0.4; break;
+                    }
+                    
+                    const totalEstimate = (basePrice * multiplier) + packingCost;
+                    const lowRange = Math.floor(totalEstimate * 0.9);
+                    const highRange = Math.ceil(totalEstimate * 1.1);
+                    
+                    resultAmount.textContent = `${lowRange} - ${highRange}`;
+                    resultDiv.style.display = 'block';
+                    
+                    // Reset button state
+                    calculateBtn.innerHTML = 'Calculate Estimate';
+                    calculateBtn.disabled = false;
+                    
+                    // Show success notification
+                    showNotification('Estimate calculated successfully!', 'success');
+                    
+                    // Smooth scroll to result
+                    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 1200);
+            });
+            
+            // Chat Widget
+            const chatButton = document.getElementById('chat-button');
+            const chatPopup = document.getElementById('chat-popup');
+            const chatClose = document.getElementById('chat-close');
+            const chatInput = document.getElementById('chat-input-field');
+            const chatSend = document.getElementById('chat-send');
+            const chatMessages = document.getElementById('chat-messages');
+            
+            chatButton.addEventListener('click', function() {
+                chatPopup.classList.toggle('open');
+                if (chatPopup.classList.contains('open')) {
+                    chatInput.focus();
+                }
+            });
+            
+            chatClose.addEventListener('click', function() {
+                chatPopup.classList.remove('open');
+            });
+            
+            function addMessage(message, isOutgoing = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `chat-message ${isOutgoing ? 'outgoing' : 'incoming'}`;
+                
+                const time = new Date();
+                const formattedTime = `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}`;
+                
+                messageDiv.innerHTML = `
+                    <div class="message-content">
+                        <p>${message}</p>
+                        <span class="message-time">${formattedTime}</span>
+                    </div>
+                `;
+                
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            function sendMessage() {
+                const message = chatInput.value.trim();
+                if (message) {
+                    addMessage(message, true);
+                    chatInput.value = '';
+                    
+                    // Simulate response delay
+                    setTimeout(() => {
+                        const responses = [
+                            "Thanks for your message! One of our moving specialists will be with you shortly.",
+                            "Great question! We offer both residential and commercial moving services. Would you like to know more about any specific service?",
+                            "We typically recommend booking your move at least 2-3 weeks in advance to ensure availability.",
+                            "We serve the entire Cary and Raleigh area, including surrounding communities.",
+                            "We'd be happy to provide a free estimate for your move. Could you tell us more about your moving needs?"
+                        ];
+                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                        addMessage(randomResponse);
+                    }, 1000);
+                }
+            }
+            
+            chatSend.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            // Notification System
+            function showNotification(message, type = 'info') {
+                // Create notification element
+                const notification = document.createElement('div');
+                notification.className = `notification notification-${type}`;
+                
+                // Set icon based on type
+                let icon = 'info-circle';
+                if (type === 'success') icon = 'check-circle';
+                if (type === 'error') icon = 'exclamation-circle';
+                if (type === 'warning') icon = 'exclamation-triangle';
+                
+                notification.innerHTML = `
+                    <i class="fas fa-${icon}"></i>
+                    <span>${message}</span>
+                    <button class="notification-close"><i class="fas fa-times"></i></button>
+                `;
+                
+                // Add to DOM
+                document.body.appendChild(notification);
+                
+                // Animate in
+                setTimeout(() => {
+                    notification.classList.add('show');
+                }, 10);
+                
+                // Set up close button
+                const closeBtn = notification.querySelector('.notification-close');
+                closeBtn.addEventListener('click', () => {
+                    notification.classList.remove('show');
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 300);
+                });
+                
+                // Auto remove after 5 seconds
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        notification.classList.remove('show');
+                        setTimeout(() => {
+                            if (document.body.contains(notification)) {
+                                notification.remove();
+                            }
+                        }, 300);
+                    }
+                }, 5000);
+            }
+            
+            // Dark Mode Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                // Update toggle icon
+                const isDarkMode = document.body.classList.contains('dark-mode');
+                themeToggle.innerHTML = isDarkMode ? 
+                    '<i class="fas fa-sun"></i>' : 
+                    '<i class="fas fa-moon"></i>';
+                
+                // Save preference to localStorage
+                localStorage.setItem('dark-mode', isDarkMode);
+                
+                // Show notification
+                showNotification(`${isDarkMode ? 'Dark' : 'Light'} mode enabled`, 'info');
+            });
+            
+            // Check for saved theme preference
+            if (localStorage.getItem('dark-mode') === 'true') {
+                document.body.classList.add('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        });
+    </script>
 </body>
 </html>
