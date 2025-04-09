@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Brother Moving - Professional Movers in Cary & Raleigh</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #1d3557;
+            --secondary: #ffd100;
+            --accent: #e63946;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-weight: 600;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .top-bar {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+        
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary);
+        }
+        
+        .logo img {
+            height: 60px;
+            margin-right: 10px;
+        }
+        
+        .logo span {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 0;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .service-content {
+            padding: 20px;
+        }
+        
+        .service-content h3 {
+            color: var(--primary);
+        }
+        
+        /* Why Us Section */
+        .why-us {
+            background-color: var(--primary);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background-color: white;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--light);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--secondary);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 0;
+        }
+        
+        .author-info p {
+            color: var(--gray);
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background-color: var(--secondary);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .contact-item {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+        
+        .contact-icon {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Calculator Section */
+        .calculator {
+            background-color: var(--light);
+        }
+        
+        .calculator-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .calculator-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+        
+        .calculator-result {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+        }
+        
+        .result-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .hero {
+                padding: 100px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .top-bar .container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .calculator-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <span>📍 Cary, NC 27518</span>
+                <a href="tel:919-525-9425">📞 919-525-9425</a>
+            </div>
+            <div class="social-links">
+                <span>Follow us: FB | IG | TW</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="logo">
+                    <img src="/api/placeholder/120/60" alt="Big Brother Moving Logo">
+                    <span>Big Brother Moving</span>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Reviews</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                    <div class="mobile-menu">☰</div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Moving Doesn't Need To Be Complicated</h1>
+                <p>We'll guide you every step of the way with professional and reliable moving services in Cary & Raleigh area.</p>
+                <div class="hero-cta">
+                    <a href="#" class="btn">Get Free Estimate</a>
+                    <a href="#" class="btn btn-accent">Call Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Moving Services</h2>
+                <p>We specialize in moving people, not just boxes. Let us handle your next move with care and professionalism.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="/api/placeholder/400/200" alt="Residential Moving">
+                    <div class="service-content">
+                        <h3>Residential Moving</h3>
+                        <p>From apartments to houses, we'll make your residential move smooth and stress-free with our experienced team.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="/api/placeholder/400/200" alt="Commercial Moving">
+                    <div class="service-content">
+                        <h3>Commercial Moving</h3>
+                        <p>Minimize downtime with our efficient commercial moving services for offices, retail spaces, and more.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="/api/placeholder/400/200" alt="Packing Services">
+                    <div class="service-content">
+                        <h3>Packing Services</h3>
+                        <p>Let our professionals pack your belongings with care using high-quality materials for maximum protection.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Moving Cost Calculator -->
+    <section class="calculator">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get An Estimate</h2>
+                <p>Use our quick calculator to get an estimated cost for your move. For a detailed quote, contact us directly.</p>
+            </div>
+            <div class="calculator-container">
+                <form class="calculator-form">
+                    <div class="form-group">
+                        <label for="move-size">Home Size</label>
+                        <select id="move-size">
+                            <option value="studio">Studio Apartment</option>
+                            <option value="1bedroom">1 Bedroom</option>
+                            <option value="2bedroom">2 Bedrooms</option>
+                            <option value="3bedroom">3 Bedrooms</option>
+                            <option value="4bedroom">4+ Bedrooms</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="move-distance">Move Distance</label>
+                        <select id="move-distance">
+                            <option value="local">Local (Within 50 miles)</option>
+                            <option value="intrastate">Intrastate</option>
+                            <option value="interstate">Interstate</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="move-date">Move Date</label>
+                        <input type="date" id="move-date">
+                    </div>
+                    <div class="form-group">
+                        <label for="packing-service">Packing Services</label>
+                        <select id="packing-service">
+                            <option value="none">No Packing Needed</option>
+                            <option value="partial">Partial Packing</option>
+                            <option value="full">Full Packing</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <button type="button" class="btn">Calculate Estimate</button>
+                    </div>
+                </form>
+                <div class="calculator-result">
+                    <p>Estimated Moving Cost:</p>
+                    <div class="result-amount">$800 - $1,200</div>
+                    <p><small>This is a rough estimate. Contact us for an accurate quote.</small></p>
+                    <a href="#" class="btn btn-accent">Get Exact Quote</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Big Brother Moving</h2>
+                <p>We pride ourselves in being the most professional movers around.</p>
+            </div>
+            <div class="why-us-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Punctual & Efficient</h3>
+                    <p>We value your time and always arrive on schedule, completing moves efficiently without sacrificing quality.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Licensed & Insured</h3>
+                    <p>Rest easy knowing your belongings are protected by our comprehensive insurance coverage.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Professional Team</h3>
+                    <p>Our experienced, background-checked movers are trained to handle your items with the utmost care.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Transparent Pricing</h3>
+                    <p>No hidden fees or surprise charges. Get clear, upfront pricing before your move begins.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Are Saying</h2>
+                <p>Don't just take our word for it - hear from our satisfied customers.</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>We had a move in June and had a great experience with Big Brother Moving. They came equipped to get it done quick with a large crew and they definitely were the best priced movers around for the quality of service you get. Great guys! Great service!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="/api/placeholder/50/50" alt="Leilani Colonna Warren" class="author-image">
+                        <div class="author-info">
+                            <h4>Leilani Colonna Warren</h4>
+                            <p>Cary, NC</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>Mike and his team showed up on time and had my entire second floor apartment loaded into the moving truck quickly. When I arrived at my new house in Cary, nothing was damaged. Hiring Mike was a great move. I'm a happy camper!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="/api/placeholder/50/50" alt="Mitch White" class="author-image">
+                        <div class="author-info">
+                            <h4>Mitch White</h4>
+                            <p>Raleigh, NC</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>I have used Big Brother Moving both personally and professionally numerous times over the past few years. Every time the moves goes smoothly and very professionally. Their team goes above and beyond to ensure their clients are happy. HIGHLY recommend!</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="/api/placeholder/50/50" alt="Kellan Duffy" class="author-image">
+                        <div class="author-info">
+                            <h4>Kellan Duffy</h4>
+                            <p>Cary, NC</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready For A Stress-Free Moving Experience?</h2>
+            <p>Contact Big Brother Moving today and let us handle the heavy lifting.</p>
+            <a href="#" class="btn btn-accent">Get Free Estimate</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <a href="#" class="footer-logo">Big Brother Moving</a>
+                    <p>The finest moving company in the Cary-Raleigh area. We pride ourselves in being the most professional movers around.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Residential Moving</a></li>
+                        <li><a href="#">Commercial Moving</a></li>
+                        <li><a href="#">Packing Services</a></li>
+                        <li><a href="#">Loading & Unloading</a></li>
+                        <li><a href="#">Furniture Assembly</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Get a Quote</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Reviews</a></li>
+                        <li><a href="#">Moving Tips</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <span>P.O. Box 5068, Cary, NC 27518</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <span>919-525-9425</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <span>bigbrothermoving10@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Copyright © 2025, Big Brother Moving, LLC. All Rights Reserved.</p>
+                <p>Website Design & Development by Claude</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
